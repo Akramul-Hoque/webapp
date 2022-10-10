@@ -1,9 +1,12 @@
 package com.example.webapp.userControler;
 
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class
@@ -16,5 +19,18 @@ UserService {
     public void save(User user){
         repo.save(user);
     }
+    public User get(Integer Id) throws UserNotFoundException{
+        val result = repo.findById(Id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new UserNotFoundException("Could not find any users with ID"+ Id);
+    }
+
+    public void delete(Integer Id) throws UserNotFoundException {
+
+        repo.deleteById(Id);
+    }
+
 }
 

@@ -28,7 +28,7 @@ public class User {
     @Column(nullable = false,length = 15)
     private String last_name;
 
-    private boolean enabled;
+    public boolean enabled;
 
     /*public Integer getId() {
         return Id;
